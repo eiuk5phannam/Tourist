@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.corelambda.tourist.datamodel.WikipediaPage;
+
 import java.util.List;
 
 public class TouristRecyclerAdapter extends RecyclerView.Adapter<TouristRecyclerAdapter.TouristHolder> {
-    List<String> touristSites;
+    List<WikipediaPage> touristSites;
 
-    public TouristRecyclerAdapter(List<String> touristSites) {
+    public TouristRecyclerAdapter(List<WikipediaPage> touristSites) {
         this.touristSites = touristSites;
     }
 
@@ -20,7 +22,7 @@ public class TouristRecyclerAdapter extends RecyclerView.Adapter<TouristRecycler
     @Override
     public TouristHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        TextView v = (TextView) inflater.inflate(R.layout.tourist_item_list, parent, false);
+        TextView v = (TextView) inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
 
         TouristHolder holder = new TouristHolder(v);
 //        TextView v2 = (TextView) LayoutInflater
@@ -31,7 +33,7 @@ public class TouristRecyclerAdapter extends RecyclerView.Adapter<TouristRecycler
 
     @Override
     public void onBindViewHolder(@NonNull TouristHolder holder, int position) {
-        String site= touristSites.get(position);
+        WikipediaPage site= touristSites.get(position);
         holder.bindView(site);
     }
 
@@ -48,8 +50,8 @@ public class TouristRecyclerAdapter extends RecyclerView.Adapter<TouristRecycler
             this.view = (TextView) itemView;
         }
 
-        public void bindView(String touristItem) {
-            view.setText(touristItem);
+        public void bindView(WikipediaPage touristItem) {
+            view.setText(touristItem.getTitle());
         }
     }
 }
